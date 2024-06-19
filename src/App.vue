@@ -1,81 +1,51 @@
 <template>
-  <main class="app">
+  <div>
     <header class="header">
       <nav class="menu">
         <ul>
-          <li :class="{ active: activeMenu === 'post' }" @click="activeMenu = 'post'"><a href="#">Post</a></li>
-          <li :class="{ active: activeMenu === 'todos' }" @click="activeMenu = 'todos'"><a href="#">Todos</a></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/todos">Todos</router-link></li>
+          <li><router-link to="/posts">Posts</router-link></li>
+          <li><router-link to="/albums">Albums</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
         </ul>
       </nav>
     </header>
-
-    <Todos v-if="activeMenu === 'todos'">
-      <template #link>
-        <section class="link">
-          <a href="https://example.com">Kunjungi situs Todos</a>
-        </section>
-      </template>
-    </Todos>
-    <Posts v-else title="User Posts" :initialUserId="1">
-      <template #post="{ post }">
-        <h4>{{ post.title }} (custom slot)</h4>
-        <p>{{ post.body }}</p>
-      </template>
-      <template #link>
-        <section class="link">
-          <a href="https://example.com">Kunjungi situs Posts</a>
-        </section>
-      </template>
-    </Posts>
-  </main>
+    <router-view></router-view>
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import Todos from './components/Todos.vue'
-import Posts from './components/Posts.vue'
-
-const activeMenu = ref('todos') // Menetapkan menu awal yang aktif
-</script>
-
-<style scoped>
-/* CSS code for App.vue */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-}
-
+<style>
 .header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 20px 0;
+  background-color: #FF5580;
+  padding: 20px;
   text-align: center;
 }
 
 .menu ul {
-  list-style-type: none;
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
   padding: 0;
-  text-align: center;
+  margin: 0;
 }
 
 .menu ul li {
-  display: inline-block;
-  margin-right: 20px;
+  margin: 0 15px;
 }
 
 .menu ul li a {
-  color: white;
   text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  color: #f0f0f0; 
+  font-weight: bold;
+  font-size: 30px; 
+  padding: 10px 20px; 
+  border-radius: 20px; 
+  transition: background-color 0.3s, transform 0.3s; 
 }
 
-.menu ul li a:hover,
-.menu ul li.active a {
-  background-color: #388E3C;
+.menu ul li a:hover {
+  background-color: #255b7c; 
+  transform: scale(1.05); 
 }
 </style>
